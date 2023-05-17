@@ -12,7 +12,6 @@ jobs:
     - uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.PANTHEON_PRIVATE_KEY }}
-        config: ${{ secrets.SSH_CONFIG }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
     - name: deployer
