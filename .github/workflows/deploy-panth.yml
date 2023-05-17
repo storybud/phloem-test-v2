@@ -14,6 +14,11 @@ jobs:
         key: ${{ secrets.PANTHEON_PRIVATE_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
+    - name: Install Terminus
+      uses: ackama/setup-terminus@main
+      with:
+          pantheon-machine-token: ${{ secrets.PANTHEON_TERMINUS_MACHINE_TOKEN }}
+
     - name: deployer
       env:
         pantheon_repo: '${{ secrets.PANTHEON_REPO }}'
