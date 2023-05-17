@@ -14,15 +14,6 @@ jobs:
         key: ${{ secrets.PANTHEON_PRIVATE_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-
-    - name: Install Terminus
-      uses: pantheon-systems/terminus-github-actions@main
-      with:
-        pantheon-machine-token: ${{ secrets.PANTHEON_TERMINUS_MACHINE_TOKEN }}
-
-    - name: Install Terminus Build Tools
-      run: terminus self:plugin:install terminus-build-tools-plugin
-
     - name: deployer
       env:
         pantheon_repo: '${{ secrets.PANTHEON_REPO }}'
