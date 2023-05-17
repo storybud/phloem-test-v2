@@ -1,18 +1,21 @@
 name: Deploy to Pantheon
-on: 
-    push:
-        branches: main
-
+on:
+  push:
+    branches:
+      - 'master'
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-        - uses: actions/checkout@v3
-        - name: Pantheon Deploy
-          uses: pantheoncarl/pantheon-deploy@main
-          id: cache-vendor
-          env:
-            PANTHEONSITEUUID: a6fe337b-566f-4d8f-9a30-2a417cc2a49a
-            PANTHEON_TERMINUS_MACHINE_TOKEN: ${{ secrets.PANTHEON_TERMINUS_MACHINE_TOKEN }}
-            PANTHEON_PRIVATE_KEY: ${{ secrets.PANTHEON_PRIVATE_KEY }}
+    - uses: actions/checkout@v1
+    - uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.PANTHEON_PRIVATE_KEY }}
+
+    - name: deployer
+      env:
+        pantheon_repo: '${{ secrets.PANTHEON_REPO }}'
+      run: |
+        git remote add pantheon $pantheon_repo
+        git push --force pantheon HEAD:master
