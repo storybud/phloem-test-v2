@@ -1,0 +1,18 @@
+name: Deploy to Pantheon
+on: 
+    push:
+        branches: main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v3
+        - name: Pantheon Deploy
+          uses: pantheoncarl/pantheon-deploy@main
+          id: cache-vendor
+          env:
+            PANTHEONSITEUUID: a6fe337b-566f-4d8f-9a30-2a417cc2a49a
+            PANTHEON_TERMINUS_MACHINE_TOKEN: ${{ secrets.PANTHEON_TERMINUS_MACHINE_TOKEN }}
+            PANTHEON_PRIVATE_KEY: ${{ secrets.PANTHEON_PRIVATE_KEY }}
