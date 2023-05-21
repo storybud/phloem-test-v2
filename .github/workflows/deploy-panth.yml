@@ -24,4 +24,4 @@ jobs:
         git config --global user.name "karlalmanac"
         git add .
         git commit -q -m 'Build assets for dev.'
-        git push --force pantheon HEAD:refs/heads/$BASE_BRANCH
+        git push --force pantheon HEAD:refs/heads/master
